@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+ <head>
+ <title> DB List Page</title>
+ </head>
+  <h1> This is the list page</h1>
+ <body>
+ <h3> View all database data here:</h3>
+   <ul>
+   <% avaliableCustomers.forEach(function(Customer){ %>
+   <li><%= Customer.name %>, <%=Customer.address %></li>
+   <% }) %>
+   </ul>
+</body>
+</html>

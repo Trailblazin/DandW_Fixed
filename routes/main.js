@@ -31,7 +31,7 @@ const isAdmin = (req,res,next) =>{
    res.render("search.html");
    });
 
-   app.get('/search-result', function (req, res)
+   app.get('/search-result', function (req, res){
    let searchResultQuery = "SELECT * FROM Customer WHERE name LIKE ?";
    db.query(searchResultQuery,req.query.keyword,(err,result) =>{
    if (err){
@@ -108,19 +108,18 @@ app.post('/claimToEdit', function(req,res){
 	if (err){
 	return console.error(err.message);
 	}
-	else
 	let sqlQuery= "UPDATE Claim SET (year, damage_type,damage_amount) VALUES(?,?,?) WHERE customer_id = ?"
 	const recordEdit = [req.body.year,req.body.type,req.body.damage,req.body.id]
-        db.query(sqlQuery,recordEdit(err,result) =>
+        db.query(sqlQuery,recordEdit,(err,result) =>
 	{
 	if (err){
 	return console.error(err.message);
 	}
 	else
 	res.send('Claim:' + req.body.id+ "has been amended successfully");
-
 	});
 	});
+	
 });
 
 app.get('/removeClaim',isAdmin, function(req,res){
@@ -170,7 +169,7 @@ app.post('/claimRemove',function(req,res){
   });
   });
 
-  app.get(/'login', function(req,res){
+  app.get('/login', function(req,res){
 	  res.render("login.html.");
   });
   
@@ -217,6 +216,7 @@ app.post('/claimRemove',function(req,res){
   res.json(result);
   });         
   });
+})
 }
 
 

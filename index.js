@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var session.require ('express-session');
+var session = require ('express-session');
 var validator = require ('express-validator');
 var sanatizer = require('express-sanitizer');
 const mysql = require('mysql');
@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(bodyParser.json()); 
 
-qpp.use(session({
+app.use(session({
 	secret: 'somerandomstuffs',
 	resave: false,
 	saveUninitialized: false,

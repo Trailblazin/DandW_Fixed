@@ -1,7 +1,10 @@
 var express = require('express');
-var bodyparser = require('body-parser');
+var bodyParser = require('body-parser');
+var session.require ('express-session');
+var validator = require ('express-validator');
+var sanatizer = require('express-sanitizer');
 const mysql = require('mysql');
-
+const bcrypt = require('bcrypt');
 
 const app = express();
 const port = 8000;
@@ -21,12 +24,26 @@ console.log('DB Connection: Successful');
 });
 global.db = db;
 
-
-require('./routes/main')(app);
 app.set('views',__dirname + '/views');
+
 app.set('view engine', 'ejs');
+
 app.engine('html', require('ejs').renderFile);
 
+app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(bodyParser.json()); 
+
+qpp.use(session({
+	secret: 'somerandomstuffs',
+	resave: false,
+	saveUninitialized: false,
+	cookie:{
+	expires: 600000
+	}
+}));
+
+require('./routes/main')(app);
+
+
 app.listen(port, () => console.log('Example app listening on port${port}!'))
-
-

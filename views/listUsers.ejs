@@ -1,0 +1,15 @@
+<!doctype html>
+ <html>
+  <head> 
+ <title> DB User List Page</title> 
+ </head>
+   <h1> This is the list page for User Accounts</h1> 
+ <body> 
+ <h3> View all User data here:</h3>  
+  <ul>  
+  <% avaliableUsers.forEach(function(User){ %>
+    <li><%= User.username %></li> 
+   <% }) %>
+    </ul>
+ </body>
+ </html>
